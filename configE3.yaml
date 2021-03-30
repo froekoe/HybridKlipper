@@ -26,17 +26,20 @@ controls:
         name: Move X (static)
     -   commands:
         - G91
-        - G1 X%(distance)s F%(speed)s
+        - G1 %(axis)%(distance)s F%(speed)s
         - G90
         input:
+        -   default: X
+            name: Axis
+            parameter: axis
         -   default: 10
             name: Distance
             parameter: distance
         -   default: 3000
             name: Speed
             parameter: speed
-        name: Move X (parametric)
-    name: Example for multiple commands
+        name: Move X
+    name: Controls Tweaker
 -   children:
     -   command: M114
         name: Get Position
@@ -54,6 +57,7 @@ controls:
         name: Dance
         script: custom/dance.gco
     name: Fun stuff
+
 plugins:
     announcements:
         _config_version: 1
