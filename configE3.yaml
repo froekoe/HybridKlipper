@@ -26,7 +26,7 @@ controls:
         name: Move X (static)
     -   commands:
         - G91
-        - G1 %(axis)%(distance)s F%(speed)s
+        - G1 %(axis)s%(distance)s F%(speed)s
         - G90
         input:
         -   default: X
