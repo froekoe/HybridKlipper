@@ -39,6 +39,30 @@ controls:
             name: Speed
             parameter: speed
         name: Move X
+    -   commands:
+        - G91
+        - G1 Y%(distance)s F%(speed)s
+        - G90
+        input:
+        -   default: 10
+            name: Distance
+            parameter: distance
+        -   default: 3000
+            name: Speed
+            parameter: speed
+        name: Move Y
+    -   commands:
+        - G91
+        - G1 Z%(distance)s F%(speed)s
+        - G90
+        input:
+        -   default: 10
+            name: Distance
+            parameter: distance
+        -   default: 3000
+            name: Speed
+            parameter: speed
+        name: Move Z
     name: Controls Tweaker
 -   children:
     -   command: M114
