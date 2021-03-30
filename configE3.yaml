@@ -1,0 +1,117 @@
+accessControl:
+    salt: zE7Ybghp2sg1EiRXVzL9eZuuWemXfR2d
+api:
+    key: 6DA4E09FC7FD4F2EA4D5BA59D6B2C37E
+controls:
+-   children:
+    -   command: M106 S%(speed)s
+        input:
+        -   default: 255
+            name: Speed (0-255)
+            parameter: speed
+            slider:
+                max: 255
+                min: 0
+        name: Enable Fan
+    -   command: M107
+        name: Disable Fan
+    layout: horizontal
+    name: Fan
+-   children:
+    -   commands:
+        - G91
+        - G1 X10 F3000
+        - G90
+        confirm: You are about to move the X axis right by 10mm with 3000mm/s.
+        name: Move X (static)
+    -   commands:
+        - G91
+        - G1 X%(distance)s F%(speed)s
+        - G90
+        input:
+        -   default: 10
+            name: Distance
+            parameter: distance
+        -   default: 3000
+            name: Speed
+            parameter: speed
+        name: Move X (parametric)
+    name: Example for multiple commands
+-   children:
+    -   command: M114
+        name: Get Position
+        regex: X:([-+]?[0-9.]+) Y:([-+]?[0-9.]+) Z:([-+]?[0-9.]+) E:([-+]?[0-9.]+)
+        template: 'Position: X={0}, Y={1}, Z={2}, E={3}'
+    name: Reporting
+-   children:
+    -   input:
+        -   name: Go arounds
+            parameter: repetitions
+            slider:
+                max: 10
+                min: 1
+                step: 1
+        name: Dance
+        script: custom/dance.gco
+    name: Fun stuff
+plugins:
+    announcements:
+        _config_version: 1
+        channels:
+            _blog:
+                read_until: 1612178700
+            _important:
+                read_until: 1521111600
+            _octopi:
+                read_until: 1611568800
+            _plugins:
+                read_until: 1614146400
+            _releases:
+                read_until: 1611052200
+    cura:
+        cura_engine: null
+    discovery:
+        publicPort: 80
+        upnpUuid: a2ea99be-29fd-4cd5-8877-d17a49fcfad0
+    errortracking:
+        unique_id: 2af65b79-f901-49f8-9799-db1f3dc58122
+    gcodeviewer:
+        _config_version: 1
+    softwareupdate:
+        _config_version: 9
+    tracking:
+        enabled: true
+        unique_id: 2a7c59e7-2378-44de-baba-365a84f9da52
+    virtual_printer:
+        _config_version: 1
+printerProfiles:
+    default: _default
+server:
+    commands:
+        serverRestartCommand: sudo service octoprint restart
+        systemRestartCommand: sudo shutdown -r now
+        systemShutdownCommand: sudo shutdown -h now
+    firstRun: false
+    onlineCheck:
+        enabled: true
+    pluginBlacklist:
+        enabled: true
+    secretKey: kdyr623YTShvpsXzZRJjDkHwk4E5CMll
+    seenWizards:
+        backup: null
+        corewizard: 4
+        tracking: null
+temperature:
+    profiles:
+    -   bed: 100
+        chamber: null
+        extruder: 210
+        name: ABS
+    -   bed: 60
+        chamber: null
+        extruder: 180
+        name: PLA
+webcam:
+    ffmpeg: /usr/bin/ffmpeg
+    snapshot: http://127.0.0.1:8080/?action=snapshot
+    stream: /webcam/?action=stream
