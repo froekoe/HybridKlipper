@@ -1,0 +1,84 @@
+accessControl:
+    enabled: false
+    salt: gnNhcZS22PjxkgBNm36B3Ely1qPjNJqK
+api:
+    key: BAA89F3A6DC54BCAA74A17E96182CE9A
+plugins:
+    HeaterTimeout:
+        _config_version: 2
+    announcements:
+        _config_version: 1
+        channels:
+            _blog:
+                read_until: 1612178700
+            _important:
+                read_until: 1521111600
+            _octopi:
+                read_until: 1611568800
+            _plugins:
+                read_until: 1615269600
+            _releases:
+                read_until: 1611052200
+    bedlevelvisualizer:
+        _config_version: 1
+    cura:
+        cura_engine: /usr/local/bin/cura_engine
+    discovery:
+        publicPort: 80
+        upnpUuid: 649218a4-f7c4-4837-893b-8af64c1ee86a
+    errortracking:
+        unique_id: 79dc7048-21ac-43cb-bb55-f69b72bfcfb8
+    excluderegion:
+        _config_version: 1
+    gcodeviewer:
+        _config_version: 1
+    klipper:
+        _config_version: 2
+    softwareupdate:
+        _config_version: 9
+    thespaghettidetective:
+        auth_token: f6a633e217180431513d
+        sentry_opt: asked
+    tracking:
+        enabled: true
+        unique_id: d6486894-a114-4201-9486-e78bb1cdcda4
+    virtual_printer:
+        _config_version: 1
+printerProfiles:
+    default: _default
+serial:
+    additionalPorts:
+    - /tmp/printer
+    autoconnect: true
+    baudrate: 250000
+    disconnectOnErrors: false
+    port: /tmp/printer
+server:
+    commands:
+        serverRestartCommand: sudo service octoprint restart
+        systemRestartCommand: sudo shutdown -r now
+        systemShutdownCommand: sudo shutdown -h now
+    firstRun: false
+    onlineCheck:
+        enabled: true
+    pluginBlacklist:
+        enabled: true
+    secretKey: DIH4lXkTRhLnP03ciuRos4PHFKy73Wz0
+    seenWizards:
+        corewizard: 3
+        thespaghettidetective: 2
+        tracking: null
+temperature:
+    profiles:
+    -   bed: 100
+        chamber: null
+        extruder: 210
+        name: ABS
+    -   bed: 60
+        chamber: null
+        extruder: 200
+        name: PLA
+webcam:
+    ffmpeg: /usr/bin/ffmpeg
+    snapshot: http://127.0.0.1:8080/?action=snapshot
+    stream: /webcam/?action=stream
