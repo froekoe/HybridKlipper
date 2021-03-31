@@ -82,3 +82,82 @@ webcam:
     ffmpeg: /usr/bin/ffmpeg
     snapshot: http://127.0.0.1:8080/?action=snapshot
     stream: /webcam/?action=stream
+controls:
+-   children:
+    -   command: M106 S%(speed)s
+        input:
+        -   default: 255
+            name: Speed (0-255)
+            parameter: speed
+            slider:
+                max: 255
+                min: 0
+        name: Enable Fan
+    -   command: M107
+        name: Disable Fan
+    layout: horizontal
+    name: Fan
+-   children:
+    -   commands:
+        - G91
+        - G1 X10 F3000
+        - G90
+        confirm: You are about to move the X axis right by 10mm with 3000mm/s.
+        name: Move X (static)
+    -   commands:
+        - G91
+        - G1 %(axis)s%(distance)s F%(speed)s
+        - G90
+        input:
+        -   default: X
+            name: Axis
+            parameter: axis
+        -   default: 10
+            name: Distance
+            parameter: distance
+        -   default: 3000
+            name: Speed
+            parameter: speed
+        name: Move X
+    -   commands:
+        - G91
+        - G1 Y%(distance)s F%(speed)s
+        - G90
+        input:
+        -   default: 10
+            name: Distance
+            parameter: distance
+        -   default: 3000
+            name: Speed
+            parameter: speed
+        name: Move Y
+    -   commands:
+        - G91
+        - G1 Z%(distance)s F%(speed)s
+        - G90
+        input:
+        -   default: 10
+            name: Distance
+            parameter: distance
+        -   default: 3000
+            name: Speed
+            parameter: speed
+        name: Move Z
+    name: Controls Tweaker
+-   children:
+    -   command: M114
+        name: Get Position
+        regex: X:([-+]?[0-9.]+) Y:([-+]?[0-9.]+) Z:([-+]?[0-9.]+) E:([-+]?[0-9.]+)
+        template: 'Position: X={0}, Y={1}, Z={2}, E={3}'
+    name: Reporting
+-   children:
+    -   input:
+        -   name: Go arounds
+            parameter: repetitions
+            slider:
+                max: 10
+                min: 1
+                step: 1
+        name: Dance
+        script: custom/dance.gco
+    name: Fun stuff
